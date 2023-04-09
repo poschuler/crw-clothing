@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from 'react';
 
 import FormInput from '../form-input/form-input.component';
@@ -95,7 +96,7 @@ const SignUpForm = (props: any) => {
           label={'Confirm Password'}
           type="password"
           required
-          name="password"
+          name="confirmPassword"
           onChange={handleChange}
           value={confirmPassword}
         />
