@@ -5,7 +5,12 @@ import { CartContext } from '../../contexts/cart.context';
 
 import CheckoutItem from '../checkout-item/checkout-item-component';
 
-import { CheckoutContainer } from './checkout.styles';
+import {
+  CheckoutContainer,
+  Total,
+  CheckoutHeader,
+  HeaderBlock,
+} from './checkout.styles';
 
 type Props = { name: string };
 
@@ -14,27 +19,27 @@ const Checkout = (props: any) => {
 
   return (
     <CheckoutContainer>
-      <div className="checkout-header">
-        <div className="header-block">
+      <CheckoutHeader>
+        <HeaderBlock>
           <span>Product</span>
-        </div>
-        <div className="header-block">
+        </HeaderBlock>
+        <HeaderBlock>
           <span>Description</span>
-        </div>
-        <div className="header-block">
+        </HeaderBlock>
+        <HeaderBlock>
           <span>Quantity</span>
-        </div>
-        <div className="header-block">
+        </HeaderBlock>
+        <HeaderBlock>
           <span>Price</span>
-        </div>
-        <div className="header-block">
+        </HeaderBlock>
+        <HeaderBlock>
           <span>Remove</span>
-        </div>
-      </div>
+        </HeaderBlock>
+      </CheckoutHeader>
       {cartItems.map((cartItem: any) => {
         return <CheckoutItem key={cartItem.id} cartItem={cartItem} />;
       })}
-      <span className="total">Total: ${cartTotal}</span>
+      <Total>Total: ${cartTotal}</Total>
     </CheckoutContainer>
   );
 };
