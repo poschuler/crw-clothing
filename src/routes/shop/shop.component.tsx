@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import CategoriesPreview from '../categories-preview/categories-preview.component';
 import Category from '../category/category.component';
-import { fetchCategoriesAsync } from '../../store/categories/category.actions';
+import { fetchCategoriesStart } from '../../store/categories/category.actions';
 
 type Props = { id: number; name: string };
 
@@ -11,7 +11,7 @@ const Shop = (props: any) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchCategoriesAsync() as any);
+    dispatch(fetchCategoriesStart() as any);
   }, []);
 
   return (
