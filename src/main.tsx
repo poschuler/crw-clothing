@@ -6,14 +6,19 @@ import { PersistGate } from 'redux-persist/integration/react';
 import './index.scss';
 import { BrowserRouter } from 'react-router-dom';
 
+import { Elements } from '@stripe/react-stripe-js';
+
 import { persistor, store } from './store/store';
+import { stripePromise } from './utils/stripe/stripe.utils';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter>
-          <App />
+          <Elements stripe={stripePromise}>
+            <App />
+          </Elements>
         </BrowserRouter>
       </PersistGate>
     </Provider>

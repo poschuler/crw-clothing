@@ -2,14 +2,16 @@
   "name": "crwn-chothing",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@stripe/react-stripe-js": "^2.1.0",
+    "@stripe/stripe-js": "^1.52.1",
     "@types/redux-logger": "^3.0.9",
+    "dotenv": "^16.0.3",
     "firebase": "^9.19.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -22,6 +24,7 @@
     "redux-thunk": "^2.4.2",
     "reselect": "^4.1.7",
     "sass": "^1.60.0",
+    "stripe": "^12.0.0",
     "styled-components": "^5.3.9"
   },
   "devDependencies": {
