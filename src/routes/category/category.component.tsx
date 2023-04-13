@@ -17,7 +17,9 @@ type CategoryRouteParams = {
 };
 
 const Category = () => {
-  const { category } = useParams<keyof CategoryRouteParams>();
+  const { category } = useParams<
+    keyof CategoryRouteParams
+  >() as CategoryRouteParams;
   const categoriesMap = useSelector(selectCategoriesMap);
   const isLoading = useSelector(selectCategoriesIsLoading);
   const [products, setProducts] = useState(categoriesMap[category]);
@@ -34,7 +36,7 @@ const Category = () => {
       ) : (
         <CategoryContainer>
           {products &&
-            products.map((product: any) => {
+            products.map((product) => {
               return <ProductCard key={product.id} product={product} />;
             })}
         </CategoryContainer>
