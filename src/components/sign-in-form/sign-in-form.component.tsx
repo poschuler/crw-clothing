@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent, FormEvent } from 'react';
 import { useState } from 'react';
 
 import FormInput from '../form-input/form-input.component';
@@ -18,9 +18,7 @@ const defaultFormFields = {
   password: '',
 };
 
-type Props = {};
-
-const SignInForm = (props: any) => {
+const SignInForm = () => {
   const dispatch = useDispatch();
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
@@ -33,27 +31,28 @@ const SignInForm = (props: any) => {
     dispatch(googleSignInStart());
   };
 
-  const handleSubmit = async (event: any) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     try {
       dispatch(emailSignInStart(email, password));
       resetFormFields();
-    } catch (error: any) {
-      switch (error.code) {
-        case 'auth/wrong-password':
-          alert('incorrect password for email');
-          break;
-        case 'auth/user-not-found':
-          alert('no user associated with this email');
-          break;
-        default:
-          console.log(error);
-      }
+    } catch (error) {
+      console.log('user sign in failed', error);
+      // switch (error.code) {
+      //   case 'auth/wrong-password':
+      //     alert('incorrect password for email');
+      //     break;
+      //   case 'auth/user-not-found':
+      //     alert('no user associated with this email');
+      //     break;
+      //   default:
+      //     console.log(error);
+      // }
     }
   };
 
-  const handleChange = (event: any) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
 
     setFormFields({ ...formFields, [name]: value });

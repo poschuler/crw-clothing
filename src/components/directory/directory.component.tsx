@@ -2,8 +2,6 @@ import React from 'react';
 import DirectoryItem from '../directory-item/directory-item.component';
 import { DirectoryContainer } from './directory.styles';
 
-type Props = {};
-
 const categories = [
   {
     id: 1,
@@ -40,7 +38,7 @@ const categories = [
 const Directory = () => {
   return (
     <DirectoryContainer>
-      {categories.map((category: any) => {
+      {categories.map((category) => {
         return <DirectoryItem key={category.id} category={category} />;
       })}
     </DirectoryContainer>

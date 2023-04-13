@@ -12,9 +12,7 @@ import {
 } from './cart-dropdown.styles';
 import { selectCartItems } from '../../store/cart/cart.selector';
 
-type Props = {};
-
-const CartDropdown = (props: Props) => {
+const CartDropdown = () => {
   const cartItems = useSelector(selectCartItems);
   const navigate = useNavigate();
 
@@ -26,9 +24,7 @@ const CartDropdown = (props: Props) => {
     <CartDropdownContainer>
       <CartItems>
         {cartItems.length ? (
-          cartItems.map((item: any) => (
-            <CartItem key={item.id} cartItem={item} />
-          ))
+          cartItems.map((item) => <CartItem key={item.id} cartItem={item} />)
         ) : (
           <EmptyMessage>Your cart is empty</EmptyMessage>
         )}

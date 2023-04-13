@@ -7,24 +7,33 @@ import {
   fetchCategoriesFailed,
 } from './category.actions';
 
-import { CATEGORIES_ACTION_TYPES } from './category.types';
+import { CATEGORIES_ACTION_TYPES, Category } from './category.types';
+import { SagaIterator } from 'redux-saga';
 
-export function* fetchCategoriesAsync() {
+// Generator<
+//   | CallEffect<Category[]>
+//   | PutEffect<FetchCategoriesSuccess>
+//   | PutEffect<FetchCategoriesFailed>,
+//   void,
+//   Category[]
+// >
+
+export function* fetchCategoriesAsync(): SagaIterator {
   try {
     const categoriesArray = yield call(getCategoriesAndDocuments);
     yield put(fetchCategoriesSuccess(categoriesArray));
   } catch (error) {
-    yield put(fetchCategoriesFailed(error));
+    yield put(fetchCategoriesFailed(error as Error));
   }
 }
 
-export function* onFetchCategories() {
+export function* onFetchCategories(): SagaIterator {
   yield takeLatest(
     CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_START,
     fetchCategoriesAsync
   );
 }
 
-export function* categoriesSaga() {
+export function* categoriesSaga(): SagaIterator {
   yield all([call(onFetchCategories)]);
 }

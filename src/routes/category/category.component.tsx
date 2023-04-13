@@ -12,16 +12,18 @@ import {
 
 import Spinner from '../../components/spinner/spinner-component';
 
-type Props = {};
+type CategoryRouteParams = {
+  category: string;
+};
 
-const Category = (props: Props) => {
-  const { category } = useParams();
+const Category = () => {
+  const { category } = useParams<keyof CategoryRouteParams>();
   const categoriesMap = useSelector(selectCategoriesMap);
   const isLoading = useSelector(selectCategoriesIsLoading);
-  const [products, setProducts] = useState(categoriesMap[category as string]);
+  const [products, setProducts] = useState(categoriesMap[category]);
 
   useEffect(() => {
-    setProducts(categoriesMap[category as string]);
+    setProducts(categoriesMap[category]);
   }, [category, categoriesMap]);
 
   return (

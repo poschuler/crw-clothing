@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import {
   Arrow,
   BaseSpan,
@@ -16,10 +16,13 @@ import {
   clearItemFromCart,
   removeItemFromCart,
 } from '../../store/cart/cart.action';
+import { CartItem } from '../../store/cart/cart.types';
 
-type Props = { name: string };
+type CheckoutItemProps = {
+  cartItem: CartItem;
+};
 
-const CheckoutItem = ({ cartItem }: any) => {
+const CheckoutItem: FC<CheckoutItemProps> = ({ cartItem }) => {
   const { name, imageUrl, price, quantity } = cartItem;
 
   const cartItems = useSelector(selectCartItems);

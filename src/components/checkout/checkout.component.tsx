@@ -14,9 +14,7 @@ import {
 } from '../../store/cart/cart.selector';
 import PaymentForm from '../payment-form/payment-form.component';
 
-type Props = { name: string };
-
-const Checkout = (props: any) => {
+const Checkout = () => {
   const cartItems = useSelector(selectCartItems);
   const cartTotal = useSelector(selectCartTotal);
 
@@ -39,7 +37,7 @@ const Checkout = (props: any) => {
           <span>Remove</span>
         </HeaderBlock>
       </CheckoutHeader>
-      {cartItems.map((cartItem: any) => {
+      {cartItems.map((cartItem) => {
         return <CheckoutItem key={cartItem.id} cartItem={cartItem} />;
       })}
       <Total>Total: ${cartTotal}</Total>
